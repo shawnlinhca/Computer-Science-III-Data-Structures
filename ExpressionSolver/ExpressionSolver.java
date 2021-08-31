@@ -1,43 +1,66 @@
 import java.util.*;
+
+import static java.lang.Integer.parseInt;
+
 public class ExpressionSolver {
-    private int out;
-    private String[] in;
+
+
+     ArrayList<String> al;
     public ExpressionSolver(String[] arr){
-        in = arr;
-        out = 0;
+
+
+        al = new ArrayList<>();
+        Collections.addAll(al, arr);
     }
     public int getOut(){
-
-        List<String> al = new ArrayList<String>();
-        al = Arrays.asList(in);
-        for(int i = 1;i<al.getSize();i= i+2){
-            if(al.get(i).equals("*")){
-                al.set(i-1,Integer.toString(Integer.parseInt(al.get(i-1))*Integer.parseInt(al.get(i+1)))) ;
-                al.remove(i);
-                al.remove(i);
-                i = i-2;
-            }
+        if(al.size()<2){
+            return parseInt(al.get(0));
+        }
+        for(int i = 1;i<al.size();i+=2){
             if(al.get(i).equals("/")){
-                al.set(i-1,Integer.toString(Integer.parseInt(al.get(i-1))/Integer.parseInt(al.get(i+1)))) ;
+                al.set(i-1,Integer.toString(parseInt(al.get(i-1))/parseInt(al.get(i+1))));
+
+                if(al.size()<3){
+                    return parseInt(al.get(0));
+                }
                 al.remove(i);
                 al.remove(i);
-                i = i-2;
             }
         }
-        for(int i = 1;i<al.getSize();i= i+2){
-            if(al.get(i).equals("+")){
-                al.set(i-1,Integer.toString(Integer.parseInt(al.get(i-1))+Integer.parseInt(al.get(i+1)))) ;
+        for(int i = 1;i<al.size();i+=2){
+            if(al.get(i).equals("*")){
+                al.set(i-1,Integer.toString(parseInt(al.get(i-1))*parseInt(al.get(i+1))));
+
+                if(al.size()<3){
+                    return parseInt(al.get(0));
+                }
                 al.remove(i);
                 al.remove(i);
-                i = i-2;
             }
+        }
+        for(int i = 1;i<al.size();i+=2){
             if(al.get(i).equals("-")){
-                al.set(i-1,Integer.toString(Integer.parseInt(al.get(i-1))-Integer.parseInt(al.get(i+1)))) ;
+                al.set(i-1,Integer.toString(parseInt(al.get(i-1))-parseInt(al.get(i+1))));
+
+                if(al.size()<3){
+                    return parseInt(al.get(0));
+                }
                 al.remove(i);
                 al.remove(i);
-                i = i-2;
             }
         }
-        return Integer.parseInt(al.get(0));
+        for(int i = 1;i<al.size();i += 2){
+            if(al.get(i).equals("+")){
+                al.set(i-1,Integer.toString(parseInt(al.get(i-1))+parseInt(al.get(i+1))));
+
+                if(al.size()<3){
+                    return parseInt(al.get(0));
+                }
+                al.remove(i);
+                al.remove(i);
+            }
+        }
+        return parseInt(al.get(0));
+
     }
 }

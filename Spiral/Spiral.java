@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 
 public class Spiral {
 
@@ -13,22 +13,24 @@ public class Spiral {
         m = new int[length][length];
         r = 0;
         c = 0;
-        filled = 0;
+        filled = 1;
         FILLED = length * length;
-        for(int[] i:m){
-            Arrays.fill(i, -1);
-        }
-        while (filled != FILLED) {
-            m[r][c] = ++filled;
-            dir = 1;
+        dir=1;
+        while (filled-1 != FILLED) {
+
+            m[r][c] = filled;
             changeDir();
+            filled++;
+
+
         }
 
     }
 
     public void changeDir() {
+        //System.out.println( r+ " " + c+ " " + filled + " " + dir );
         if (dir == 1) {
-            if (r == m.length-1 || m[r+1][c] != -1) {
+            if (r == m.length-1 || m[r+1][c] != 0) {
                 dir++;
 
             }
@@ -38,7 +40,7 @@ public class Spiral {
 
         }
         if (dir == 2) {
-            if (c == m.length-1 || m[r][c+1] != -1) {
+            if (c == m.length-1 || m[r][c+1] != 0) {
                 dir++;
 
 
@@ -46,7 +48,7 @@ public class Spiral {
             else c++;
         }
         if (dir == 3) {
-            if (r== 0 || m[r-1][c] != -1 ) {
+            if (r== 0 || m[r-1][c] != 0 ) {
                 dir++;
 
             }
@@ -54,13 +56,19 @@ public class Spiral {
         }
 
         if (dir == 4) {
-            if (c == 0 || m[r][c-1] != -1) {
-                dir++;
+            if (c == 0 || m[r][c-1] != 0) {
+                dir = 1;
+                if (r == m.length-1 || m[r+1][c] != 0) {
+                    dir++;
 
+                }
+                else{
+                    r++;
+                }
             }
             else c--;
         }
-        // System.out.println( r+ " " + c+ " " + filled + " " + dir );
+
     }
 
     @Override

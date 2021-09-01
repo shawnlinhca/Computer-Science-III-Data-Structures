@@ -1,8 +1,9 @@
 import java.util.*;
 import java.io.*;
+
 public class ExpressionSolverRunner {
     public static void main(String []args) throws Exception {
-        Scanner scanner = new Scanner(new File("ExpressionSolver.txt"));
+        Scanner scanner = new Scanner(new File("ExpressionSolver/ExpressionSolver.txt"));
         String[] temp;
         String temp1;
         ExpressionSolver e;

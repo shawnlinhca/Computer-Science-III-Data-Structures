@@ -4,14 +4,14 @@ import java.io.*;
 public class ExpressionSolverRunner {
     public static void main(String []args) throws Exception {
         Scanner scanner = new Scanner(new File("ExpressionSolver/ExpressionSolver.txt"));
-        String[] temp;
-        String temp1;
-        ExpressionSolver e;
+        String[] stringArray;
+        String aLine;
+        ExpressionSolver solver;
         while(scanner.hasNext()){
-            temp1 = scanner.nextLine();
-            temp = temp1.split(" ");
-            e = new ExpressionSolver(temp);
-            System.out.println(temp1 + " = " + e.getOut());
+            aLine = scanner.nextLine();
+            stringArray = aLine.split(" ");
+            solver = new ExpressionSolver(stringArray);
+            System.out.println(aLine + " = " + solver.findAnswer());
         }
 
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/ExpressionSolver/ExpressionSolver.iml" filepath="$PROJECT_DIR$/ExpressionSolver/ExpressionSolver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FourCorners/FourCorners.iml" filepath="$PROJECT_DIR$/FourCorners/FourCorners.iml" />
-    </modules>
-  </component>
-</project>

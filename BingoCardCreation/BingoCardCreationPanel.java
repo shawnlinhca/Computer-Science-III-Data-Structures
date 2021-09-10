@@ -3,19 +3,26 @@
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-public class BingoCardCreationPanel extends JPanel{
+public class BingoCardCreationPanel extends JPanel implements MouseListener {
 
     private int count = 0;
     private ArrayList<Integer> arr = new ArrayList<>();
     private ArrayList<Integer> arrnew = new ArrayList<>();
     private BufferedImage bingocard;
-    private Random rand = new Random(BingoCardCreationRunner.s);
+    private final Random rand = new Random(BingoCardCreationRunner.s);
+    private boolean game = false;
+    private int[][] valuegrid = new int[5][5];
+    private boolean[][] pulled = new boolean[5][5];
+
     public BingoCardCreationPanel(){
+        addMouseListener(this);
         try{
             bingocard = ImageIO.read(Objects.requireNonNull(BingoCardCreationPanel.class.getResource("bingocard.png")));
         }
@@ -48,29 +55,69 @@ public class BingoCardCreationPanel extends JPanel{
 
 
         g.drawImage(bingocard,0,0,208,242,null);
-
+        g.drawRect(300,300,100,20);
+        g.drawString("Play Bingo",300,310);
         for(int i = 0;i<5;i++) {
-            g.drawString(Integer.toString(getNum()), 10, 70+(i*40));
+            valuegrid[i][0] = getNum();
+            g.drawString(Integer.toString(valuegrid[i][0]), 10, 70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
-            g.drawString(Integer.toString(getNum()+15), 50, 70+(i*40));
+            valuegrid[i][1] = getNum()+15;
+            g.drawString(Integer.toString(valuegrid[i][1]), 50, 70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
             if(i==2){continue;}
-            g.drawString(Integer.toString(getNum()+30), 90, 70+(i*40));
+            valuegrid[i][2] = getNum()+30;
+            g.drawString(Integer.toString(valuegrid[i][1]), 90, 70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
-            g.drawString(Integer.toString(getNum()+45), 130, 70+(i*40));
+            valuegrid[i][3] = getNum() +45;
+            g.drawString(Integer.toString(valuegrid[i][3]), 130, 70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
-            g.drawString(Integer.toString(getNum()+60), 170, 70+(i*40));
+            valuegrid[i][4] = getNum() + 60;
+            g.drawString(Integer.toString(valuegrid[i][4]), 170, 70+(i*40));
 
         }
 
     }
 
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+       if((e.getX(
+       )>=300 || e.getX()<=400)&&(e.getY()>=300 || e.getY()<=320)){
+           play();
+       }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+    public void play(){
+        if(!game){
+
+        }
+    }
 }

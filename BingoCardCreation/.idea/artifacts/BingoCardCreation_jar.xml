@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="BingoCardCreation:jar">
+    <output-path>$PROJECT_DIR$/out/production/BingoCardCreation/.idea/shelf/Uncommitted_changes_before_Update_at_9_7_2021_6_11_PM_[Changes]</output-path>
+    <root id="archive" name="BingoCardCreation.jar">
+      <element id="module-output" name="BingoCardCreation" />
+      <element id="archive" name="archive.jar" />
+    </root>
+  </artifact>
+</component>

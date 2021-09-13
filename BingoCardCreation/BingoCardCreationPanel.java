@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.*;
@@ -8,12 +10,12 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-public class BingoCardCreationPanel extends JPanel implements MouseListener {
+public class BingoCardCreationPanel extends JPanel implements MouseListener, KeyListener {
     private int count = 0;
     private ArrayList<Integer> arr = new ArrayList<>();
     private ArrayList<Integer> arrnew = new ArrayList<>();
     private BufferedImage bingocard;
-    private final Random rand = new Random(BingoCardCreationRunner.s);
+    private final Random rand = new Random(BingoCardCreationFrame.seed);
     private boolean game = false;
     private final int[][] valueGrid = new int[5][5];
     private final boolean[][] pulled = new boolean[5][5];
@@ -207,6 +209,21 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener {
     }
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

@@ -1,88 +1,20 @@
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.*;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
+
+
 import java.util.Objects;
 import java.util.Random;
 public class BingoCardCreationPanel extends JPanel implements MouseListener, KeyListener {
-    private int count = 0;
-    private ArrayList<Integer> arr = new ArrayList<>();
-    private ArrayList<Integer> arrnew = new ArrayList<>();
-    private BufferedImage bingocard;
-    private final Random rand = new Random(BingoCardCreationFrame.seed);
-    private boolean game = false;
-    private final int[][] valueGrid = new int[5][5];
-    private final boolean[][] pulled = new boolean[5][5];
-    private int ball;
-    public void play(){
-        int randx = rand.nextInt(15)+1;
-        int randy = (rand.nextInt(4)+1)*15;
-        ball = randx + randy;
-        if(!game){
-            for(int i =0;i<5;i++){
-                for(int j = 0;j<5;j++){
-                    if(valueGrid[i][j] == ball){
-                        pulled[i][j] = true;
-                    }
-                }
-            }
-
-            if(pulled[0][0] && pulled[0][1] && pulled[0][2] && pulled[0][3] && pulled[0][4]){
-                game = true;
-            }
-
-            if(pulled[0][0] && pulled[1][0] && pulled[2][0] && pulled[3][0] && pulled[4][0]){
-                game = true;
-            }
-
-            if(pulled[0][0] && pulled[1][1] && pulled[2][2] && pulled[3][3] && pulled[4][4]){
-                game = true;
-            }
-
-            if(pulled[4][0] && pulled[3][1] && pulled[2][2] && pulled[1][3] && pulled[0][4]){
-                game = true;
-            }
-
-            if(pulled[1][0] && pulled[1][1] && pulled[1][2] && pulled[1][3] && pulled[1][4]){
-                game = true;
-            }
-
-            if(pulled[0][1] && pulled[1][1] && pulled[2][1] && pulled[3][1] && pulled[4][1]){
-                game = true;
-            }
-
-            if(pulled[2][0] && pulled[2][1] && pulled[2][2] && pulled[2][3] && pulled[2][4]){
-                game = true;
-            }
-
-            if(pulled[0][2] && pulled[1][2] && pulled[2][2] && pulled[3][2] && pulled[4][2]){
-                game = true;
-            }
-
-            if(pulled[3][0] && pulled[3][1] && pulled[3][2] && pulled[3][3] && pulled[3][4]){
-                game = true;
-            }
-
-            if(pulled[0][3] && pulled[1][3] && pulled[2][3] && pulled[3][3] && pulled[4][3]){
-                game = true;
-            }
-
-            if(pulled[4][0] && pulled[4][1] && pulled[4][2] && pulled[4][3] && pulled[4][4]){
-                game = true;
-            }
-
-            if(pulled[0][4] && pulled[1][4] && pulled[2][4] && pulled[3][4] && pulled[4][4]){
-                game = true;
-            }
-        }
-        repaint();
-    }
+    private static BufferedImage bingocard;
+    public static final Random rand = new Random(BingoCardCreationFrame.seed);
+    protected  static boolean[][] pulled = new boolean[5][5];
     public BingoCardCreationPanel(){
         addMouseListener(this);
         try{
@@ -92,86 +24,39 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
             System.out.println("Exception Error");
         }
     }
-    public int getNum(){
-        if(arr.size()==0) {
-            for (int i = 0; i < 15; i++) {
-                arr.add(i + 1);
-            }
-            arrnew = arr;
-        }
-
-
-
-        if(count == 5){
-            count = 0;
-            arr = arrnew;
-        }
-        int randomi = rand.nextInt(arr.size());
-        int out = arr.get(randomi);
-        arr.remove(randomi);
-        count++;
-        return out;
-    }
-    public void makeValueGrid(){
-        for(int i = 0;i<5;i++) {
-            this.valueGrid[i][0] = getNum();
-        }
-        for(int i = 0;i<5;i++) {
-            this.valueGrid[i][1] = getNum()+15;
-
-
-        }
-        for(int i = 0;i<5;i++) {
-            if(i==2){continue;}
-            this.valueGrid[i][2] = getNum()+30;
-
-
-        }
-        for(int i = 0;i<5;i++) {
-            this.valueGrid[i][3] = getNum() +45;
-
-
-        }
-        for(int i = 0;i<5;i++) {
-            this.valueGrid[i][4] = getNum() + 60;
-
-
-        }
-    }
-    @Override
-    public void paint( Graphics g){
-
+    public static void makeBingoCard(Graphics g,int x,int y, int[][] arr){
         pulled[2][2] = true;
-        g.drawImage(bingocard,0,0,208,242,null);
-        g.drawRect(300,300,100,20);
-        g.drawString("Play Bingo",300,310);
+
+        g.drawImage(bingocard,x,y,208,242,null);
+        /*g.drawRect(300,300,100,20);
+        g.drawString("Play Bingo",300,310);*/
         for(int i = 0;i<5;i++) {
 
-            g.drawString(Integer.toString(valueGrid[i][0]), 10, 70+(i*40));
+            g.drawString(Integer.toString(arr[i][0]), x+10, y+70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
 
-            g.drawString(Integer.toString(valueGrid[i][1]), 50, 70+(i*40));
+            g.drawString(Integer.toString(arr[i][1]), x+50, y+70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
             if(i==2){continue;}
 
-            g.drawString(Integer.toString(valueGrid[i][2]), 90, 70+(i*40));
+            g.drawString(Integer.toString(arr[i][2]),x+ 90, y+70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
 
-            g.drawString(Integer.toString(valueGrid[i][3]), 130, 70+(i*40));
+            g.drawString(Integer.toString(arr[i][3]), x+130, y+70+(i*40));
 
         }
         for(int i = 0;i<5;i++) {
 
-            g.drawString(Integer.toString(valueGrid[i][4]), 170, 70+(i*40));
+            g.drawString(Integer.toString(arr[i][4]), x+170, y+70+(i*40));
 
         }
-        g.setColor(Color.red);
+        /*g.setColor(Color.red);
         for(int i = 0;i<5;i++){
             for(int j = 0;j<5;j++){
                 if(pulled[i][j]){
@@ -180,19 +65,44 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
             }
         }
         if(!game){g.setColor(Color.white);
-        g.fillRect(400,300,100,10);
-        g.setColor(Color.red);
-        g.drawString("Ball: " + ball,400,310);}
+            g.fillRect(400,300,100,10);
+            g.setColor(Color.red);
+            g.drawString("Ball: " + ball,400,310);}
         if(game){
             g.drawString("BINGO!",300,320);
-        }
-
+        }*/
     }
+    int pane = 0;
+    public void paint(Graphics g){
+        if(pane == 0) {
+            g.drawRect(100, 400, 200, 75);
+            g.drawRect(300, 400, 200, 75);
+            g.drawRect(500, 400, 200, 75);
+            g.drawString("View Cards", 110, 420);
+            g.drawString("View Balls", 310, 420);
+            g.drawString("View Winners", 510, 420);
+        }
+        if(pane == 1){
+            for(int i = 0;i<BingoCardCreationFrame.bingoCards;i++){
+
+            }
+        }
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
-       if((e.getX()>=300 && e.getX()<=400)&&(e.getY()>=300 && e.getY()<=320)){
-           play();
+       if((e.getX()>100 && e.getX()<300)&&(e.getY()>400 && e.getY()<475)){
+           pane = 1;
+           repaint();
+       }
+       if((e.getX()>300 && e.getX()<500)&&(e.getY()>400 && e.getY()<475)){
+            pane = 2;
+            repaint();
+       }
+       if((e.getX()>500 && e.getX()<700)&&(e.getY()>400 && e.getY()<475)){
+            pane = 3;
+            repaint();
        }
     }
     @Override
@@ -212,18 +122,22 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
 
     }
 
+
     @Override
     public void keyTyped(KeyEvent e) {
-
+        pane = 0;
+        repaint();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        pane = 0;
+        repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        pane = 0;
+        repaint();
     }
 }

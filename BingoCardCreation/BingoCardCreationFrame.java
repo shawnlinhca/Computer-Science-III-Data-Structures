@@ -1,41 +1,45 @@
 import javax.swing.*;
-import java.awt.*;
+
+
+import static java.lang.Integer.parseInt;
+
 public class BingoCardCreationFrame extends JFrame {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 600;
-    private final BingoCardTextField inputSeed;
-    private final BingoCardTextField inputWinners;
-    private final BingoCardTextField inputDays;
     public static int seed;
     public static int days;
     public static int winners;
+    public static int bingoCards;
+
     public BingoCardCreationFrame(String frameName){
         super(frameName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
+
+
+        JOptionPane seedInput = new JOptionPane();
+        add(seedInput);
+        seed = parseInt(JOptionPane.showInputDialog(seedInput,"Enter game number"));
+
+        JOptionPane daysInput = new JOptionPane();
+        add(daysInput);
+        days = parseInt(JOptionPane.showInputDialog(daysInput,"Enter number of days"));
+
+        JOptionPane winnersInput = new JOptionPane();
+        add(winnersInput);
+        winners = parseInt(JOptionPane.showInputDialog(winnersInput,"Enter number of winners"));
+
+        JOptionPane bingoCardsInput = new JOptionPane();
+        add(bingoCardsInput);
+        bingoCards = parseInt(JOptionPane.showInputDialog(bingoCardsInput,"Enter number of bingo cards you want to create"));
+
         BingoCardCreationPanel panel = new BingoCardCreationPanel();
-        panel.makeValueGrid();
-        inputSeed = new BingoCardTextField();
-        inputSeed.getLabel().setText("Enter Game Number");
-        inputSeed.setSize(200,60);
-        inputSeed.setLocation(300, 340);
-        seed = (int) inputSeed.getNumberField().getValue();
-        add(inputSeed);
-        inputDays = new BingoCardTextField();
-        inputDays.getLabel().setText("Enter Number of Days");
-        inputDays.setSize(200,60);
-        inputDays.setLocation(300, 400);
-        days = (int) inputDays.getNumberField().getValue();
-        add(inputDays);
-        inputWinners = new BingoCardTextField();
-        inputWinners.getLabel().setText("Enter Number of Winners");
-        inputWinners.setSize(200,60);
-        inputWinners.setLocation(300, 460);
-        winners = (int) inputWinners.getNumberField().getValue();
-        add(inputWinners);
         add(panel);
+
         setVisible(true);
         setResizable(false);
     }
+
+
 
 }

@@ -1,0 +1,31 @@
+public class Ball {
+    private final int num;
+    private final String column;
+    public Ball(){
+        int randx = BingoCardCreationPanel.rand.nextInt(15)+1;
+        int randy = (BingoCardCreationPanel.rand.nextInt(5))*15;
+        num = randx + randy;
+
+        if(num<16){
+            column = "B";
+        }
+        else if(num<31){
+            column = "I";
+        }
+        else if(num<46){
+            column = "N";
+        }
+        else if(num<61){
+            column = "G";
+        }
+        else {
+            column = "O";
+        }
+    }
+    public int getNum(){
+        return num;
+    }
+    public String toString(){
+        return column + " - " + num;
+    }
+}

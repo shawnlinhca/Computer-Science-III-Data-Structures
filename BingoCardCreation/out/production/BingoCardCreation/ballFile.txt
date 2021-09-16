@@ -1,0 +1,13 @@
+Balls:
+MondayAMO - 68
+MondayAMO - 62
+MondayPMB - 10
+TuesdayAMN - 42
+TuesdayPMO - 66
+TuesdayPMG - 53
+WednesdayAMN - 33
+WednesdayPMN - 35
+ThursdayAMB - 3
+ThursdayPMI - 30
+FridayAMG - 46
+FridayPMI - 16

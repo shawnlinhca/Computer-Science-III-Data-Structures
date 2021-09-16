@@ -83,9 +83,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
             g.drawString("View Winners", 510, 420);
         }
         if(pane == 1){
-            for(int i = 0;i<BingoCardCreationFrame.bingoCards;i++){
 
-            }
         }
     }
 

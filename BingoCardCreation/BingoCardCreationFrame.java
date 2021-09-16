@@ -4,8 +4,8 @@ import javax.swing.*;
 import static java.lang.Integer.parseInt;
 
 public class BingoCardCreationFrame extends JFrame {
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 600;
+    private static final int WIDTH = 1920;
+    private static final int HEIGHT = 1080;
     public static int seed;
     public static int days;
     public static int winners;
@@ -32,6 +32,8 @@ public class BingoCardCreationFrame extends JFrame {
         JOptionPane bingoCardsInput = new JOptionPane();
         add(bingoCardsInput);
         bingoCards = parseInt(JOptionPane.showInputDialog(bingoCardsInput,"Enter number of bingo cards you want to create"));
+
+
 
         BingoCardCreationPanel panel = new BingoCardCreationPanel();
         add(panel);

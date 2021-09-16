@@ -18,7 +18,7 @@ public class BingoCard {
         this.pulled = new boolean[5][5];
         pulled[2][2] = true;
     }
-    public String getId(){
+    public String toString(){
         return id;
     }
     public boolean[][] getPulled(){

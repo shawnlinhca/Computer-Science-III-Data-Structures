@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -133,5 +134,53 @@ public class BingoCard {
                 }
             }
         }
+    }
+    public void makeBingoCard(Graphics g,int x,int y){
+        pulled[2][2] = true;
+
+        g.drawImage(BingoCardCreationPanel.bingocard,x,y,208,242,null);
+        /*g.drawRect(300,300,100,20);
+        g.drawString("Play Bingo",300,310);*/
+        for(int i = 0;i<5;i++) {
+
+            g.drawString(Integer.toString(valueGrid[i][0]), x+10, y+70+(i*40));
+
+        }
+        for(int i = 0;i<5;i++) {
+
+            g.drawString(Integer.toString(valueGrid[i][1]), x+50, y+70+(i*40));
+
+        }
+        for(int i = 0;i<5;i++) {
+            if(i==2){continue;}
+
+            g.drawString(Integer.toString(valueGrid[i][2]),x+ 90, y+70+(i*40));
+
+        }
+        for(int i = 0;i<5;i++) {
+
+            g.drawString(Integer.toString(valueGrid[i][3]), x+130, y+70+(i*40));
+
+        }
+        for(int i = 0;i<5;i++) {
+
+            g.drawString(Integer.toString(valueGrid[i][4]), x+170, y+70+(i*40));
+
+        }
+        /*g.setColor(Color.red);
+        for(int i = 0;i<5;i++){
+            for(int j = 0;j<5;j++){
+                if(pulled[i][j]){
+                    g.fillRect(i*40+5,j*40+40,40,40);
+                }
+            }
+        }
+        if(!game){g.setColor(Color.white);
+            g.fillRect(400,300,100,10);
+            g.setColor(Color.red);
+            g.drawString("Ball: " + ball,400,310);}
+        if(game){
+            g.drawString("BINGO!",300,320);
+        }*/
     }
 }

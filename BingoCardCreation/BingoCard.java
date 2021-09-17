@@ -4,8 +4,8 @@ import java.util.UUID;
 
 public class BingoCard {
     private final String id;
-    private final int[][] valueGrid;
-    private final boolean[][] pulled;
+    private static int[][] valueGrid;
+    private static boolean[][] pulled;
     private boolean winner = false;
     private static ArrayList<Integer> arr = new ArrayList<>();
     private static ArrayList<Integer> arrnew = new ArrayList<>();
@@ -13,20 +13,14 @@ public class BingoCard {
     public BingoCard(){
         id = String.valueOf(UUID.randomUUID());
 
-        this.valueGrid =new  int[5][5];
+        valueGrid =new  int[5][5];
         makeValueGrid();
 
-        this.pulled = new boolean[5][5];
+        pulled = new boolean[5][5];
         pulled[2][2] = true;
     }
     public String toString(){
         return id;
-    }
-    public boolean[][] getPulled(){
-        return pulled;
-    }
-    public int[][] getValuearray(){
-        return valueGrid;
     }
     public boolean checkWinner(){
         if(pulled[0][0] && pulled[0][1] && pulled[0][2] && pulled[0][3] && pulled[0][4]){

@@ -9,7 +9,7 @@ public class BingoCardCreationRunner {
     private static ArrayList<Ball> balls;
     private static ArrayList<String> winnerId;
     private static int[][] ballsondays;
-    public static ArrayList<BingoCard> bingoCards;
+    public static ArrayList<BingoCard> bingoCards = new ArrayList<>();;
 
     public static void main(String[]args)throws IOException{
 
@@ -21,7 +21,7 @@ public class BingoCardCreationRunner {
         int y;
         int counter = 0;
         String fileName;
-        bingoCards = new ArrayList<>();
+
         for(int i = 0;i<BingoCardCreationFrame.bingoCards;i++){
             bingoCards.add(new BingoCard());
         }
@@ -37,14 +37,14 @@ public class BingoCardCreationRunner {
                     x=0;
                     y=0;
                     g.drawString(bingoCards.get(counter).toString(),x, y+300);
-                    BingoCardCreationPanel.makeBingoCard(g,x,y, bingoCards.get(counter).getValuearray());
+                    bingoCards.get(counter).makeBingoCard(g,x,y);
                     counter = counter + 1;
                 }
                 else if(i==1 ){
                     x=532;
                     y=0;
                     g.drawString(bingoCards.get(counter).toString(),x, y+300);
-                    BingoCardCreationPanel.makeBingoCard(g,x,y, bingoCards.get(counter).getValuearray());
+                    bingoCards.get(counter).makeBingoCard(g,x,y);
                      counter = counter + 1;
                 }
                 else {
@@ -56,7 +56,7 @@ public class BingoCardCreationRunner {
                     }
                     y=688;
                     g.drawString(bingoCards.get(counter).toString(),x, y+300);
-                    BingoCardCreationPanel.makeBingoCard(g,x,y, bingoCards.get(counter).getValuearray());
+                    bingoCards.get(counter).makeBingoCard(g,x,y);
                     counter = counter + 1;
                 }
 

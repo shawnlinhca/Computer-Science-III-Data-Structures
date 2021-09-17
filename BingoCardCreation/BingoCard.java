@@ -4,12 +4,12 @@ import java.util.UUID;
 
 public class BingoCard {
     private final String id;
-    private static int[][] valueGrid;
-    private static boolean[][] pulled;
+    private final int[][] valueGrid;
+    private final boolean[][] pulled;
     private boolean winner = false;
-    private static ArrayList<Integer> arr = new ArrayList<>();
-    private static ArrayList<Integer> arrnew = new ArrayList<>();
-    private static int count = 0;
+    private ArrayList<Integer> arr = new ArrayList<>();
+    private ArrayList<Integer> arrnew = new ArrayList<>();
+    private int count = 0;
     public BingoCard(){
         id = String.valueOf(UUID.randomUUID());
 
@@ -19,6 +19,7 @@ public class BingoCard {
         pulled = new boolean[5][5];
         pulled[2][2] = true;
     }
+    @Override
     public String toString(){
         return id;
     }
@@ -98,7 +99,7 @@ public class BingoCard {
 
         }
     }
-    public static int getNum(){
+    public int getNum(){
         if(arr.size()==0) {
             for (int i = 0; i < 15; i++) {
                 arr.add(i + 1);
@@ -129,7 +130,7 @@ public class BingoCard {
             }
         }
     }
-    public void makeBingoCard(Graphics g,int x,int y){
+    void makeBingoCard(Graphics g, int x, int y){
         pulled[2][2] = true;
 
         g.drawImage(BingoCardCreationPanel.bingocard,x,y,208,242,null);

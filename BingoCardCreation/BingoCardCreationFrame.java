@@ -54,7 +54,7 @@ public class BingoCardCreationFrame extends JFrame {
         winnerButton.setActionCommand("winner");
         BingoCard[] bingoCardArray = BingoCardCreationRunner.bingoCards.toArray(new BingoCard[0]);
         bingobox = new JComboBox<>(bingoCardArray);
-        bingobox.setSize(100,10);
+        bingobox.setSize(200,25);
         bingobox.setLocation(50,300);
         add(bingobox);
         bingobox.setActionCommand("bingobox");

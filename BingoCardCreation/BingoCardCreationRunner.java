@@ -9,7 +9,7 @@ public class BingoCardCreationRunner {
     private static ArrayList<Ball> balls;
     private static ArrayList<String> winnerId;
     private static int[][] ballsondays;
-    public static ArrayList<BingoCard> bingoCards = new ArrayList<>();;
+    public static ArrayList<BingoCard> bingoCards = new ArrayList<>();
 
     public static void main(String[]args)throws IOException{
 

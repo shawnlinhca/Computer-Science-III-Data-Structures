@@ -53,13 +53,13 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
             repaint();
             bingopane = true;
         }
-        //if(e.getActionCommand().equals("bingobox")){
-        //    if(bingopane){
-        //        currentCard = (BingoCard) BingoCardCreationFrame.bingobox.getSelectedItem();
-         //       assert currentCard != null;
-        //        currentCard.makeBingoCard(graphics,850,250);
-        //    }
-        //}
+        if(e.getActionCommand().equals("bingobox")){
+            if(bingopane){
+                currentCard = (BingoCard) BingoCardCreationFrame.bingobox.getSelectedItem();
+                assert currentCard != null;
+               currentCard.makeBingoCard(graphics,850,250);
+           }
+            }
 
     }
 

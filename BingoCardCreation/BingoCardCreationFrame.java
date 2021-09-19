@@ -14,7 +14,7 @@ public class BingoCardCreationFrame extends JFrame {
     public static  JButton cardButton = new JButton();
     public static  JButton winnerButton = new JButton();
     public static  JComboBox<BingoCard> bingobox;
-
+    public static JButton howToUseButton = new JButton();
     public BingoCardCreationFrame(String frameName){
         super(frameName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,13 +52,18 @@ public class BingoCardCreationFrame extends JFrame {
         winnerButton.setLocation(1300,700);
         add(winnerButton);
         winnerButton.setActionCommand("winner");
-        BingoCard[] bingoCardArray = BingoCardCreationRunner.bingoCards.toArray(new BingoCard[0]);
+        BingoCard[] bingoCardArray = BingoCardCreationRunner.bingoCards.toArray(new BingoCard[bingoCards]);
         bingobox = new JComboBox<>(bingoCardArray);
         bingobox.setSize(200,25);
         bingobox.setLocation(50,300);
         add(bingobox);
         bingobox.setActionCommand("bingobox");
-        bingobox.setEnabled(false);
+        bingobox.setVisible(false);
+        howToUseButton = new JButton("HOW TO USE");
+        howToUseButton.setSize(300,100);
+        howToUseButton.setLocation(100,700);
+        add(howToUseButton);
+        howToUseButton.setActionCommand("howToUse");
 
 
 

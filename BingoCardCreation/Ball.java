@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class Ball {
     private final int num;
     private final String column;
-    public Ball(){
-        int randx = BingoCardCreationPanel.rand.nextInt(15)+1;
-        int randy = (BingoCardCreationPanel.rand.nextInt(5))*15;
-        num = randx + randy;
+
+
+    public Ball(int i){
+        num = i;
 
         if(num<16){
             column = "B";

@@ -10,6 +10,9 @@ public class BingoCard {
     private ArrayList<Integer> arr = new ArrayList<>();
     private ArrayList<Integer> arrnew = new ArrayList<>();
     private int count = 0;
+    private String dayWon;
+    private String roundWon;
+    private int ballWon;
     public BingoCard(){
         id = String.valueOf(UUID.randomUUID());
 
@@ -23,14 +26,28 @@ public class BingoCard {
     public String toString(){
         return id;
     }
+    public void setDayWon(String s,String r){dayWon = s;roundWon = r;}
+    public void setBallWon(int i){ballWon = i;}
+    public int getBallWon(){return ballWon;}
+    public String getDayWon(){return dayWon + " " + roundWon;}
     public boolean checkWinner(){
-        if(pulled[0][0] && pulled[0][1] && pulled[0][2] && pulled[0][3] && pulled[0][4]){
-            winner = true;
+        for(int i = 0;i<5;i++){
+
+            if (pulled[i][0] && pulled[i][1] && pulled[i][2] && pulled[i][3] && pulled[0][4]) {
+                winner = true;
+                break;
+            }
+
+        }
+        for(int i = 0;i<5;i++){
+
+            if (pulled[0][i] && pulled[1][i] && pulled[2][i] && pulled[3][i] && pulled[4][i]) {
+                winner = true;
+                break;
+            }
+
         }
 
-        if(pulled[0][0] && pulled[1][0] && pulled[2][0] && pulled[3][0] && pulled[4][0]){
-            winner = true;
-        }
 
         if(pulled[0][0] && pulled[1][1] && pulled[2][2] && pulled[3][3] && pulled[4][4]){
             winner = true;
@@ -40,37 +57,7 @@ public class BingoCard {
             winner = true;
         }
 
-        if(pulled[1][0] && pulled[1][1] && pulled[1][2] && pulled[1][3] && pulled[1][4]){
-            winner = true;
-        }
 
-        if(pulled[0][1] && pulled[1][1] && pulled[2][1] && pulled[3][1] && pulled[4][1]){
-            winner = true;
-        }
-
-        if(pulled[2][0] && pulled[2][1] && pulled[2][2] && pulled[2][3] && pulled[2][4]){
-            winner = true;
-        }
-
-        if(pulled[0][2] && pulled[1][2] && pulled[2][2] && pulled[3][2] && pulled[4][2]){
-            winner = true;
-        }
-
-        if(pulled[3][0] && pulled[3][1] && pulled[3][2] && pulled[3][3] && pulled[3][4]){
-            winner = true;
-        }
-
-        if(pulled[0][3] && pulled[1][3] && pulled[2][3] && pulled[3][3] && pulled[4][3]){
-            winner = true;
-        }
-
-        if(pulled[4][0] && pulled[4][1] && pulled[4][2] && pulled[4][3] && pulled[4][4]){
-            winner = true;
-        }
-
-        if(pulled[0][4] && pulled[1][4] && pulled[2][4] && pulled[3][4] && pulled[4][4]){
-            winner = true;
-        }
         return winner;
     }
     public void makeValueGrid(){

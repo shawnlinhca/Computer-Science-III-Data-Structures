@@ -15,6 +15,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
         BingoCardCreationFrame.ballButton.addActionListener(this);
         BingoCardCreationFrame.winnerButton.addActionListener(this);
         BingoCardCreationFrame.bingobox.addActionListener(this);
+        BingoCardCreationFrame.howToUseButton.addActionListener(this);
         try{
             bingocard = ImageIO.read(Objects.requireNonNull(BingoCardCreationPanel.class.getResource("bingocard.png")));
         }
@@ -39,7 +40,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
             g.fillRect(810,200,300,300);
             g.drawImage(bingocard, 850,250, 208,242,null);
         }
-        //graphics = g;
+        graphics = g;
     }
 
     private String pane = "Main Menu";
@@ -48,7 +49,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
     public void actionPerformed(ActionEvent e) {
         boolean bingopane = false;
         if(e.getActionCommand().equals("card")){
-            BingoCardCreationFrame.bingobox.setEnabled(true);
+            BingoCardCreationFrame.bingobox.setVisible(true);
             pane = "BingoDisplay";
             repaint();
             bingopane = true;
@@ -59,7 +60,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
                 assert currentCard != null;
                currentCard.makeBingoCard(graphics,850,250);
            }
-            }
+        }
 
     }
 

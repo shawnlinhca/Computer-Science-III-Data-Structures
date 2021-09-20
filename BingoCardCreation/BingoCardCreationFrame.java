@@ -10,11 +10,12 @@ public class BingoCardCreationFrame extends JFrame {
     public static int days;
     public static int winners;
     public static int bingoCards;
-    public static  JButton ballButton = new JButton();
-    public static  JButton cardButton = new JButton();
-    public static  JButton winnerButton = new JButton();
-    public static  JComboBox<BingoCard> bingobox;
-    public static JButton howToUseButton = new JButton();
+
+
+    public static JButton howToUseButton = new JButton("How To Use");
+    public static JButton seeWinners = new JButton("See Winners");
+    public static JButton seeBalls = new JButton("See Balls");
+    public static JButton seeCards = new JButton("See Cards");
     public BingoCardCreationFrame(String frameName){
         super(frameName);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,34 +38,25 @@ public class BingoCardCreationFrame extends JFrame {
         add(bingoCardsInput);
         bingoCards = parseInt(JOptionPane.showInputDialog(bingoCardsInput,"Enter number of bingo cards you want to create"));
 
-        cardButton = new JButton("See Cards");
-        cardButton.setSize(300,100);
-        cardButton.setLocation(500,700);
-        add(cardButton);
-        cardButton.setActionCommand("card");
-        ballButton = new JButton("See Balls");
-        ballButton.setSize(300,100);
-        ballButton.setLocation(900,700);
-        add(ballButton);
-        ballButton.setActionCommand("ball");
-        winnerButton = new JButton("See Winners");
-        winnerButton.setSize(300,100);
-        winnerButton.setLocation(1300,700);
-        add(winnerButton);
-        winnerButton.setActionCommand("winner");
-        BingoCard[] bingoCardArray = BingoCardCreationRunner.bingoCards.toArray(new BingoCard[bingoCards]);
-        bingobox = new JComboBox<>(bingoCardArray);
-        bingobox.setSize(200,25);
-        bingobox.setLocation(50,300);
-        add(bingobox);
-        bingobox.setActionCommand("bingobox");
-        bingobox.setVisible(false);
-        howToUseButton = new JButton("HOW TO USE");
-        howToUseButton.setSize(300,100);
-        howToUseButton.setLocation(100,700);
+        howToUseButton.setLocation(0,0);
+        howToUseButton.setSize(130,50);
         add(howToUseButton);
         howToUseButton.setActionCommand("howToUse");
 
+        seeWinners.setLocation(0,50);
+        seeWinners.setSize(130,50);
+        add(seeWinners);
+        seeWinners.setActionCommand("winners");
+
+        seeBalls.setLocation(0,100);
+        seeBalls.setSize(130,50);
+        add(seeBalls);
+        seeBalls.setActionCommand("balls");
+
+        seeCards.setLocation(0,150);
+        seeCards.setSize(130,50);
+        add(seeCards);
+        seeCards.setActionCommand("cards");
 
 
         BingoCardCreationPanel cardPanel = new BingoCardCreationPanel();

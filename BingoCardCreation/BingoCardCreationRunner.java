@@ -1,3 +1,5 @@
+
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,15 +8,13 @@ import java.util.ArrayList;
 
 public class BingoCardCreationRunner {
 
-    private static ArrayList<Ball> balls;
-    private static ArrayList<String> winnerId;
-    private static ArrayList<BingoCard> winnerCards;
-    private static int[][] ballsondays;
     public static ArrayList<BingoCard> bingoCards = new ArrayList<>();
-
+    public static ArrayList<Integer> winnerIndex = new ArrayList<>();
+    public static boolean finished = false;
+    public static ArrayList<BingoCard> bingoCards2;
     public static void main(String[]args)throws IOException{
-
         BingoCardCreationFrame frame = new BingoCardCreationFrame("Bingo");
+
         BufferedImage bingoFile = new BufferedImage(1063,1375,BufferedImage.TYPE_INT_ARGB);
         Graphics g = bingoFile.getGraphics();
 
@@ -26,6 +26,7 @@ public class BingoCardCreationRunner {
         for(int i = 0;i<BingoCardCreationFrame.bingoCards;i++){
             bingoCards.add(new BingoCard());
         }
+        bingoCards2 = bingoCards;
         for(int j = 0;j<(BingoCardCreationFrame.bingoCards/4)+(BingoCardCreationFrame.bingoCards%4);j++) {
             g.clearRect(0,0,1063,1375);
             g.setColor(Color.white);
@@ -74,40 +75,46 @@ public class BingoCardCreationRunner {
         winnerOut.println("Winners:");
         PrintWriter ballOut = new PrintWriter("ballFile.txt");
         ballOut.println("Balls:");
-        balls = new ArrayList<>();
+        ArrayList<Ball> balls = new ArrayList<>();
+        ArrayList<Ball> ballsPulled = new ArrayList<>();
         for(int i = 1;i<=75;i++){
             balls.add(new Ball(i));
         }
-        winnerId = new ArrayList<>();
+        ArrayList<String> winnerId = new ArrayList<>();
 
 
         int ballcounter = 0;
-        ballsondays = new int[BingoCardCreationFrame.days][2];
+        int[][] ballsondays = new int[BingoCardCreationFrame.days][2];
         String day = "Monday";
         x = 0;
         y = 0;
         int counterballprint = 0;
 
-        winnerCards = new ArrayList<>();
+        ArrayList<BingoCard> winnerCards = new ArrayList<>();
 
 
         while(winnerCards.size()<BingoCardCreationFrame.winners){
 
             counter = BingoCardCreationPanel.rand.nextInt(balls.size());
-            for(int i = 0;i<bingoCards.size();i++){
 
-                if(bingoCards.get(i) == null){continue;}
+            for(int i = 0; i<bingoCards2.size(); i++){
+
+                if(bingoCards2.get(i) == null){continue;}
+                bingoCards2.get(i).drawBall(balls.get(counter).getNum());
                 bingoCards.get(i).drawBall(balls.get(counter).getNum());
-
-                if(bingoCards.get(i).checkWinner()){
-                    winnerId.add(bingoCards.get(i).toString());
-                    winnerCards.add(bingoCards.get(i));
+                if(bingoCards2.get(i).checkWinner()){
+                    winnerId.add(bingoCards2.get(i).toString());
+                    bingoCards.get(i).checkWinner();
+                    winnerCards.add(bingoCards2.get(i));
                     winnerCards.get(winnerCount).setBallWon(ballcounter);
                     winnerCount++;
-                    bingoCards.set(i,null);
+                    bingoCards2.set(i,null);
+                    winnerIndex.add(i);
+
                 }
 
             }
+            ballsPulled.add(balls.get(counter));
             balls.remove(counter);
             ballcounter++;
         }
@@ -143,26 +150,26 @@ public class BingoCardCreationRunner {
                 day = "Friday";
             }
             for(int j = 0; j< ballsondays[i][0]; j++){
-                ballOut.println(day + "AM"+ balls.get(counterballprint).toString());
+                ballOut.println(day + "AM"+ ballsPulled.get(counterballprint).toString());
                 for (BingoCard winnerCard : winnerCards) {
                     if (counterballprint == winnerCard.getBallWon()) winnerCard.setDayWon(day, "AM");
                 }
                 counterballprint++;
             }
             for(int j = 0; j< ballsondays[i][1]; j++){
-                ballOut.println(day + "PM"+ balls.get(counterballprint).toString());
+                ballOut.println(day + "PM"+ ballsPulled.get(counterballprint).toString());
                 for (BingoCard winnerCard : winnerCards) {
                     if (counterballprint == winnerCard.getBallWon()) winnerCard.setDayWon(day, "PM");
                 }
                 counterballprint++;
             }
         }
-        for(int i = 0;i<winnerCards.size();i++){
-            winnerOut.println(winnerId.get(i)+" " +winnerCards.get(i).getDayWon());
+        for(int i = 0; i< winnerCards.size(); i++){
+            winnerOut.println(winnerId.get(i)+" " + winnerCards.get(i).getDayWon());
         }
         ballOut.close();
         winnerOut.close();
-
+        finished = true;
 
 
 

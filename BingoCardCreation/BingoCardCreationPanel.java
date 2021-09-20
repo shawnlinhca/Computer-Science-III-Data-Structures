@@ -56,7 +56,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
 
             try {
                 StringBuilder out = new StringBuilder();
-                Scanner scanner = new Scanner(new File("ballFile.txt"));
+                Scanner scanner = new Scanner(new File("C:\\BingoCardFolder\\ballFile.txt"));
                 while(scanner.hasNext()){
                     out.append(scanner.nextLine()).append("\n");
                 }
@@ -71,7 +71,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
 
             try {
                 StringBuilder out = new StringBuilder();
-                Scanner scanner = new Scanner(new File("winnerFile.txt"));
+                Scanner scanner = new Scanner(new File("C:\\BingoCardFolder\\winnerFile.txt"));
                 while(scanner.hasNext()){
                     out.append(scanner.nextLine()).append("\n");
                 }
@@ -83,7 +83,16 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
         }
         else if(e.getActionCommand().equals("cards")){
                 Graphics g = getGraphics();
-                BingoCardCreationRunner.bingoCards.get(0).makeBingoCard(g,500,500);
+                int x = 0;
+                int y = 0;
+                for(BingoCard card : BingoCardCreationRunner.bingoCards){
+                    card.makeBingoCard(g,x*208,y*300+200);
+                    g.drawString(card.toString(),x*208,);
+                     x++;
+                    if(x*208>=1920)x=0;y++;
+
+                }
+
 
 
         }

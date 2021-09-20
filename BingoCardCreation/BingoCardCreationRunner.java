@@ -17,7 +17,8 @@ public class BingoCardCreationRunner {
 
         BufferedImage bingoFile = new BufferedImage(1063,1375,BufferedImage.TYPE_INT_ARGB);
         Graphics g = bingoFile.getGraphics();
-
+        File fileFolder = new File("C:\\BingoCardFolder");
+        fileFolder.mkdirs();
         int x;
         int y;
         int counter = 0;
@@ -26,7 +27,7 @@ public class BingoCardCreationRunner {
         for(int i = 0;i<BingoCardCreationFrame.bingoCards;i++){
             bingoCards.add(new BingoCard());
         }
-        bingoCards2 = bingoCards;
+        bingoCards2.addAll(bingoCards);
         for(int j = 0;j<(BingoCardCreationFrame.bingoCards/4)+(BingoCardCreationFrame.bingoCards%4);j++) {
             g.clearRect(0,0,1063,1375);
             g.setColor(Color.white);
@@ -66,14 +67,15 @@ public class BingoCardCreationRunner {
 
             }
 
-            fileName = "bingoCards"+j+".png";
+            fileName = "C:\\BingoCardFolder\\"+"bingoCards"+j+".png";
 
             ImageIO.write(bingoFile, "png", new File(fileName));
+
         }
 
-        PrintWriter winnerOut = new PrintWriter("winnerFile.txt");
+        PrintWriter winnerOut = new PrintWriter("C:\\BingoCardFolder\\winnerFile.txt");
         winnerOut.println("Winners:");
-        PrintWriter ballOut = new PrintWriter("ballFile.txt");
+        PrintWriter ballOut = new PrintWriter("C:\\BingoCardFolder\\ballFile.txt");
         ballOut.println("Balls:");
         ArrayList<Ball> balls = new ArrayList<>();
         ArrayList<Ball> ballsPulled = new ArrayList<>();

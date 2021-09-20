@@ -39,22 +39,22 @@ public class BingoCardCreationFrame extends JFrame {
         bingoCards = parseInt(JOptionPane.showInputDialog(bingoCardsInput,"Enter number of bingo cards you want to create"));
 
         howToUseButton.setLocation(0,0);
-        howToUseButton.setSize(130,50);
+        howToUseButton.setSize(110,50);
         add(howToUseButton);
         howToUseButton.setActionCommand("howToUse");
 
-        seeWinners.setLocation(0,50);
-        seeWinners.setSize(130,50);
+        seeWinners.setLocation(110,0);
+        seeWinners.setSize(110,50);
         add(seeWinners);
         seeWinners.setActionCommand("winners");
 
-        seeBalls.setLocation(0,100);
-        seeBalls.setSize(130,50);
+        seeBalls.setLocation(220,0);
+        seeBalls.setSize(110,50);
         add(seeBalls);
         seeBalls.setActionCommand("balls");
 
-        seeCards.setLocation(0,150);
-        seeCards.setSize(130,50);
+        seeCards.setLocation(330,0);
+        seeCards.setSize(110,50);
         add(seeCards);
         seeCards.setActionCommand("cards");
 

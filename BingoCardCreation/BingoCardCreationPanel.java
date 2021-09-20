@@ -49,7 +49,7 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
         if(e.getActionCommand().equals("howToUse")){
 
 
-            JOptionPane.showMessageDialog(null,"This simulation is automatically run. Cards should be visible after pressing see cards and the winnerFile.txt should have the list of winner IDs and the days and rounds they won in while the ballFile.txt should have the list of balls drawn and on which days and rounds. \nPages of bingo cards to print should be in pngs that can be shown by bingoCards(pg#).png. Press the buttons to view winner Ids in the graphic or balls drawn.");
+            JOptionPane.showMessageDialog(null,"This simulation is automatically run. Cards should be visible after pressing see cards and the winnerFile.txt should have the list of winner IDs and the days and rounds they won in while the ballFile.txt should have the list of balls drawn and on which days and rounds. \nFiles can be found under C:\\BingoCardFolder. Pages of bingo cards to print should be in pngs that can be shown by bingoCards(pg#).png. Press the buttons to view winner Ids in the graphic or balls drawn.");
 
         }
         else if(e.getActionCommand().equals("balls")){
@@ -85,11 +85,17 @@ public class BingoCardCreationPanel extends JPanel implements MouseListener, Key
                 Graphics g = getGraphics();
                 int x = 0;
                 int y = 0;
+            Font currentFont = g.getFont();
+            Font newFont = currentFont.deriveFont(currentFont.getSize() * .8F);
+            g.setFont(newFont);
                 for(BingoCard card : BingoCardCreationRunner.bingoCards){
-                    card.makeBingoCard(g,x*208,y*300+200);
-                    g.drawString(card.toString(),x*208,);
+                    card.makeBingoCard(g,x*208,y*300+100);
+                    g.drawString(card.toString(),x*208,y*300+350);
+                    if(card.checkWinner()){
+                        g.drawString("Won on "+ card.getDayWon(),x*208,y*300+370);
+                    }
                      x++;
-                    if(x*208>=1920)x=0;y++;
+                    if(x*208>=1712){x=0;y++;}
 
                 }
 

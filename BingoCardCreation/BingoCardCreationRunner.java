@@ -11,7 +11,7 @@ public class BingoCardCreationRunner {
     public static ArrayList<BingoCard> bingoCards = new ArrayList<>();
     public static ArrayList<Integer> winnerIndex = new ArrayList<>();
     public static boolean finished = false;
-    public static ArrayList<BingoCard> bingoCards2;
+    public static ArrayList<BingoCard> bingoCards2 = new ArrayList<>();
     public static void main(String[]args)throws IOException{
         BingoCardCreationFrame frame = new BingoCardCreationFrame("Bingo");
 
@@ -130,9 +130,9 @@ public class BingoCardCreationRunner {
         if(averageBalls * (BingoCardCreationFrame.days*2) < ballcounter){
             for(int i = 0;i<ballcounter%(BingoCardCreationFrame.days*2);i++){
                 ballsondays[x][y] = ballsondays[x][y] + 1;
-                x++;
+
                 if(y == 0)y++;
-                else y = 0;
+                else {y = 0;x++;}
             }
         }
         for(int i = 0;i<BingoCardCreationFrame.days;i++){
